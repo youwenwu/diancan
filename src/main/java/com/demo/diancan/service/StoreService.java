@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface StoreService {
-    public int selectCount(Map<String, Object> map);
+    int selectCount(Map<String, Object> map);
 
-    public List<Store> selectList(Map<String, Object> map);
+    List<Store> selectList(Map<String, Object> map);
+
+    void create(Map<String, Object> map);
+
+    Store selectByName(String storeName);
 }

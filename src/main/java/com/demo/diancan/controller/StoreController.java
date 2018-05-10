@@ -2,6 +2,7 @@ package com.demo.diancan.controller;
 
 import com.demo.diancan.model.Store;
 import com.demo.diancan.service.StoreService;
+import com.demo.diancan.util.MapUtil;
 import com.demo.diancan.util.PageResult;
 import com.demo.diancan.util.RestResult;
 import com.demo.diancan.util.StringUtil;
@@ -42,7 +43,24 @@ public class StoreController {
 
     @RequestMapping("/create")
     public RestResult create(@RequestParam Map<String, Object> map) {
-        return null;
+        RestResult result = new RestResult();
+        try {
+            String storeName = MapUtil.getString(map, "storeName");
+            Store store = storeService.selectByName(storeName);
+            if (store != null) {
+                result.setSuccess(false);
+                result.setErrorMsg("商家名称已存在");
+                return result;
+            }
+            storeService.create(map);
+            result.setSuccess(true);
+        }
+        catch (Exception e){
+            logger.error("创建商家异常", e);
+            result.setSuccess(false);
+            result.setErrorMsg("服务器异常");
+        }
+        return result;
     }
 
     @RequestMapping("/update")

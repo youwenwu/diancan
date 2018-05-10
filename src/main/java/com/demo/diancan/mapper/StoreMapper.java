@@ -13,4 +13,6 @@ public interface StoreMapper {
     int selectCount(Map<String, Object> map);
 
     List<Store> selectList(Map<String, Object> map);
+
+    List<Store> select(Store store);
 }

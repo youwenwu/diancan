@@ -16,12 +16,12 @@
         <result column="IMAGE_ID" jdbcType="INTEGER" property="imageId"/>
     </resultMap>
     <insert id="insert" parameterType="com.demo.diancan.model.Store">
-    insert into T_STORE (ID, STORE_NAME, STORE_LOCATION, 
+    insert into T_STORE (STORE_NAME, STORE_LOCATION,
       STORE_LONGITUDE, STORE_LATITUDE, STORE_DESC, 
       STORE_TEL, STATUS, VALID_DATE, 
       EXPIRED_DATE, SECURITY_KEY, IMAGE_ID
       )
-    values (#{id,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, #{storeLocation,jdbcType=VARCHAR}, 
+    values ( #{storeName,jdbcType=VARCHAR}, #{storeLocation,jdbcType=VARCHAR},
       #{storeLongitude,jdbcType=VARCHAR}, #{storeLatitude,jdbcType=VARCHAR}, #{storeDesc,jdbcType=VARCHAR}, 
       #{storeTel,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{validDate,jdbcType=TIMESTAMP}, 
       #{expiredDate,jdbcType=TIMESTAMP}, #{securityKey,jdbcType=VARCHAR}, #{imageId,jdbcType=INTEGER}
@@ -107,9 +107,70 @@
         </trim>
     </insert>
     <select id="selectCount" resultType="java.lang.Integer">
-      select count(1) from T_STORE
+        select count(1) from T_STORE
+        <where>
+            <if test="storeName != null">
+                and STORE_NAME like CONCAT('%',#{storeName},'%')
+            </if>
+            <if test="storeTel != null">
+                and STORE_TEL = #{storeTel}
+            </if>
+            <if test="status != null">
+                and STATUS = #{status}
+            </if>
+        </where>
     </select>
-    <select id="selectList" resultType="com.demo.diancan.model.Store">
-    select * from T_STORE
-  </select>
+    <select id="selectList" resultMap="BaseResultMap">
+        select * from T_STORE
+        <where>
+            <if test="storeName != null">
+                and STORE_NAME like CONCAT('%',#{storeName},'%')
+            </if>
+            <if test="storeTel != null">
+                and STORE_TEL = #{storeTel}
+            </if>
+            <if test="status != null">
+                and STATUS = #{status}
+            </if>
+        </where>
+        <if test="field != null">
+            ORDER BY ${field} ${sort}
+        </if>
+        LIMIT #{start},#{size}
+    </select>
+    <select id="select" resultType="com.demo.diancan.model.Store">
+        select * from T_STORE
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="storeName != null">
+                and STORE_NAME = #{storeName}
+            </if>
+            <if test="storeLocation != null">
+                and STORE_LOCATION = #{storeLocation}
+            </if>
+            <if test="storeLongitude != null">
+                and STORE_LONGITUDE = #{storeLongitude}
+            </if>
+            <if test="storeLatitude != null">
+                and STORE_LATITUDE = #{storeLatitude}
+            </if>
+            <if test="storeDesc != null">
+                and STORE_DESC = #{storeDesc}
+            </if>
+            <if test="storeTel != null">
+                and STORE_TEL = #{storeTel}
+            </if>
+            <if test="status != null">
+                and STATUS = #{status}
+            </if>
+            <if test="validDate != null">
+                and VALID_DATE = #{validDate}
+            </if>
+            <if test="expiredDate != null">
+                and EXPIRED_DATE = #{expiredDate}
+            </if>
+        </where>
+    </select>
 </mapper>
