@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.diancan.mapper.StoreMapper">
+    <resultMap id="BaseResultMap" type="com.demo.diancan.model.Store">
+        <result column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="STORE_NAME" jdbcType="VARCHAR" property="storeName"/>
+        <result column="STORE_LOCATION" jdbcType="VARCHAR" property="storeLocation"/>
+        <result column="STORE_LONGITUDE" jdbcType="VARCHAR" property="storeLongitude"/>
+        <result column="STORE_LATITUDE" jdbcType="VARCHAR" property="storeLatitude"/>
+        <result column="STORE_DESC" jdbcType="VARCHAR" property="storeDesc"/>
+        <result column="STORE_TEL" jdbcType="VARCHAR" property="storeTel"/>
+        <result column="STATUS" jdbcType="INTEGER" property="status"/>
+        <result column="VALID_DATE" jdbcType="TIMESTAMP" property="validDate"/>
+        <result column="EXPIRED_DATE" jdbcType="TIMESTAMP" property="expiredDate"/>
+        <result column="SECURITY_KEY" jdbcType="VARCHAR" property="securityKey"/>
+        <result column="IMAGE_ID" jdbcType="INTEGER" property="imageId"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.demo.diancan.model.Store">
+    insert into T_STORE (ID, STORE_NAME, STORE_LOCATION, 
+      STORE_LONGITUDE, STORE_LATITUDE, STORE_DESC, 
+      STORE_TEL, STATUS, VALID_DATE, 
+      EXPIRED_DATE, SECURITY_KEY, IMAGE_ID
+      )
+    values (#{id,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, #{storeLocation,jdbcType=VARCHAR}, 
+      #{storeLongitude,jdbcType=VARCHAR}, #{storeLatitude,jdbcType=VARCHAR}, #{storeDesc,jdbcType=VARCHAR}, 
+      #{storeTel,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{validDate,jdbcType=TIMESTAMP}, 
+      #{expiredDate,jdbcType=TIMESTAMP}, #{securityKey,jdbcType=VARCHAR}, #{imageId,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.demo.diancan.model.Store">
+        insert into T_STORE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="storeName != null">
+                STORE_NAME,
+            </if>
+            <if test="storeLocation != null">
+                STORE_LOCATION,
+            </if>
+            <if test="storeLongitude != null">
+                STORE_LONGITUDE,
+            </if>
+            <if test="storeLatitude != null">
+                STORE_LATITUDE,
+            </if>
+            <if test="storeDesc != null">
+                STORE_DESC,
+            </if>
+            <if test="storeTel != null">
+                STORE_TEL,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="validDate != null">
+                VALID_DATE,
+            </if>
+            <if test="expiredDate != null">
+                EXPIRED_DATE,
+            </if>
+            <if test="securityKey != null">
+                SECURITY_KEY,
+            </if>
+            <if test="imageId != null">
+                IMAGE_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLocation != null">
+                #{storeLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLongitude != null">
+                #{storeLongitude,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLatitude != null">
+                #{storeLatitude,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDesc != null">
+                #{storeDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="storeTel != null">
+                #{storeTel,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="validDate != null">
+                #{validDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expiredDate != null">
+                #{expiredDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="securityKey != null">
+                #{securityKey,jdbcType=VARCHAR},
+            </if>
+            <if test="imageId != null">
+                #{imageId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectCount" resultType="java.lang.Integer">
+      select count(1) from T_STORE
+    </select>
+    <select id="selectList" resultType="com.demo.diancan.model.Store">
+    select * from T_STORE
+  </select>
+</mapper>

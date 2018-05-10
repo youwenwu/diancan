@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.diancan.mapper.OrderProductCategoryOptionMapper">
+  <resultMap id="BaseResultMap" type="com.demo.diancan.model.OrderProductCategoryOption">
+    <result column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+    <result column="PRODUCT_ID" jdbcType="INTEGER" property="productId" />
+    <result column="CATEGORY_ID" jdbcType="INTEGER" property="categoryId" />
+    <result column="OPTION_ID" jdbcType="INTEGER" property="optionId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.demo.diancan.model.OrderProductCategoryOption">
+    insert into T_ORDER_PRODUCT_CATEGORY_OPTION (ORDER_ID, PRODUCT_ID, CATEGORY_ID, 
+      OPTION_ID)
+    values (#{orderId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, 
+      #{optionId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.diancan.model.OrderProductCategoryOption">
+    insert into T_ORDER_PRODUCT_CATEGORY_OPTION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="categoryId != null">
+        CATEGORY_ID,
+      </if>
+      <if test="optionId != null">
+        OPTION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="optionId != null">
+        #{optionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

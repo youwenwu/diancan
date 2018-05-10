@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.diancan.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.demo.diancan.model.Product">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="STORE_ID" jdbcType="INTEGER" property="storeId" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_DESC" jdbcType="VARCHAR" property="productDesc" />
+    <result column="ORIGINAL_PRICE" jdbcType="INTEGER" property="originalPrice" />
+    <result column="PRICE" jdbcType="INTEGER" property="price" />
+    <result column="VALID" jdbcType="INTEGER" property="valid" />
+    <result column="IMAGE_ID" jdbcType="INTEGER" property="imageId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.demo.diancan.model.Product">
+    insert into T_PRODUCT (ID, STORE_ID, PRODUCT_NAME, 
+      PRODUCT_DESC, ORIGINAL_PRICE, PRICE, 
+      VALID, IMAGE_ID)
+    values (#{id,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
+      #{productDesc,jdbcType=VARCHAR}, #{originalPrice,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{valid,jdbcType=INTEGER}, #{imageId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.diancan.model.Product">
+    insert into T_PRODUCT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="storeId != null">
+        STORE_ID,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productDesc != null">
+        PRODUCT_DESC,
+      </if>
+      <if test="originalPrice != null">
+        ORIGINAL_PRICE,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="valid != null">
+        VALID,
+      </if>
+      <if test="imageId != null">
+        IMAGE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="originalPrice != null">
+        #{originalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="valid != null">
+        #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="imageId != null">
+        #{imageId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

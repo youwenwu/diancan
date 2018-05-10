@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.diancan.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.demo.diancan.model.Order">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="STORE_ID" jdbcType="INTEGER" property="storeId" />
+    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="DESK_ID" jdbcType="INTEGER" property="deskId" />
+    <result column="SEAT_COUNT" jdbcType="INTEGER" property="seatCount" />
+    <result column="TOTAL_FEE" jdbcType="INTEGER" property="totalFee" />
+    <result column="FINAL_FEE" jdbcType="INTEGER" property="finalFee" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+  </resultMap>
+  <insert id="insert" parameterType="com.demo.diancan.model.Order">
+    insert into T_ORDER (ID, STORE_ID, ORDER_NO, 
+      DESK_ID, SEAT_COUNT, TOTAL_FEE, 
+      FINAL_FEE, STATUS, REMARK, 
+      PHONE_NUMBER)
+    values (#{id,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, 
+      #{deskId,jdbcType=INTEGER}, #{seatCount,jdbcType=INTEGER}, #{totalFee,jdbcType=INTEGER}, 
+      #{finalFee,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.diancan.model.Order">
+    insert into T_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="storeId != null">
+        STORE_ID,
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO,
+      </if>
+      <if test="deskId != null">
+        DESK_ID,
+      </if>
+      <if test="seatCount != null">
+        SEAT_COUNT,
+      </if>
+      <if test="totalFee != null">
+        TOTAL_FEE,
+      </if>
+      <if test="finalFee != null">
+        FINAL_FEE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="phoneNumber != null">
+        PHONE_NUMBER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deskId != null">
+        #{deskId,jdbcType=INTEGER},
+      </if>
+      <if test="seatCount != null">
+        #{seatCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="finalFee != null">
+        #{finalFee,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

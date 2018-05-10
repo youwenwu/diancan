@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="diancan" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3307/diancan?characterEncoding=UTF-8"
+                        userId="root"
+                        password="password">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.demo.diancan.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.demo.diancan.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table schema="" tableName="T_CATEGORY" domainObjectName="Category" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_CATEGORY_OPTION" domainObjectName="CategoryOption" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_DESK" domainObjectName="Desk" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_IMAGE" domainObjectName="Image" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_ORDER" domainObjectName="Order" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_ORDER_PRODUCT" domainObjectName="OrderProduct" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_ORDER_PRODUCT_CATEGORY_OPTION" domainObjectName="OrderProductCategoryOption" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_PRODUCT" domainObjectName="Product" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_PRODUCT_CATEGORY" domainObjectName="ProductCategory" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_PRODUCT_CATEGORY_OPTION" domainObjectName="ProductCategoryOption" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+        <table schema="" tableName="T_STORE" domainObjectName="Store" enableSelectByExample="false"
+               enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+        </table>
+
+    </context>
+</generatorConfiguration>
